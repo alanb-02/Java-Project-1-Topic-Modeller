@@ -27,7 +27,7 @@ public class topicModelGUI extends JFrame{
 		super(title);
 		JFrame frame = new JFrame();	
 		setSize(450,500);
-		setVisible(true);
+		
 		frame.getContentPane().setLayout(new BoxLayout(frame.getContentPane(), BoxLayout.Y_AXIS));
 		
 		// label for selecting the first file
@@ -61,7 +61,7 @@ public class topicModelGUI extends JFrame{
 		chFile_B2.setAlignmentX(Component.CENTER_ALIGNMENT);
 		add(panel1);
 		
-		
+		setVisible(true);
 		
 		
 		
