@@ -1,6 +1,6 @@
-package Topic.com.Model;
+package com.topic.model;
 
-public class control {
+public class Control {
 
 	/***
 	 * Class: main class
@@ -10,7 +10,7 @@ public class control {
 	
 	public static void main(String[] args) {
 		
-		topicModelGUI window = new topicModelGUI("Topic Modeller");
+		TopicModelGUI window = new TopicModelGUI("Topic Modeller");
 	}
 
 }

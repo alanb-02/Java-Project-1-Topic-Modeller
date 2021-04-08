@@ -1,4 +1,4 @@
-package Topic.com.Model;
+package com.topic.model;
 
 import java.awt.Color;
 import java.awt.Component;
@@ -17,7 +17,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
-public class topicModelGUI extends JFrame implements ActionListener{
+public class TopicModelGUI extends JFrame implements ActionListener{
 	
 	// attributes
 	JFileChooser ch_file1;
@@ -42,7 +42,7 @@ public class topicModelGUI extends JFrame implements ActionListener{
 
 
 	// constructors
-	topicModelGUI(String title){
+	TopicModelGUI(String title){
 		
 		super(title);
 		setSize(450,500);
@@ -124,7 +124,7 @@ public class topicModelGUI extends JFrame implements ActionListener{
 		// setting the current directory
 		fileChooser.setCurrentDirectory(new File(System.getProperty("user.home")));
 		// showing the dialog
-		int result = fileChooser.showOpenDialog(topicModelGUI.this);
+		int result = fileChooser.showOpenDialog(TopicModelGUI.this);
 		// checks if the users selects a file
 		if(result == JFileChooser.APPROVE_OPTION) {
 			// assigning the selected file (including path)
@@ -148,26 +148,30 @@ public class topicModelGUI extends JFrame implements ActionListener{
 			if(button_num == 1) {
 				chFile_B1.setBackground(Color.red);
 				this.file_1 = null;
+				return this.file_2;
 			}
 			else if(button_num == 2) {
 				chFile_B2.setBackground(Color.red);
 				this.file_2 = null;
+				return this.file_2;
 			}
 		}
-		return this.file_1;
+		 return this.file_1;
 	}
 	
 	// event handler - for selecting the 2 files
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource() == chFile_B1) {
 			chooseFile(1);
+			String path1 = this.file_1.getAbsolutePath(); // remove if not fixed
 			System.out.print(this.file_1);
-			
 		}
 		else if(e.getSource() == chFile_B2){
 			chooseFile(2);
+			String path1 = this.file_1.getAbsolutePath(); // remove if not fixed
 			System.out.print(getFile_2());
-			
 		}
+		
+		FileProcessor files = new FileProcessor(String path1, String path2); // +++++++ fix this
 	}
 }
