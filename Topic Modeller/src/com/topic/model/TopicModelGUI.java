@@ -6,6 +6,7 @@ import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
+import java.io.IOException;
 
 import javax.swing.BorderFactory;
 import javax.swing.Box;
@@ -68,6 +69,7 @@ public class TopicModelGUI extends JFrame implements ActionListener{
 		compare_B = new JButton("Compare");
 		compare_B.setToolTipText("Find the Topic");
 		compare_B.setBackground(Color.gray);
+		compare_B.addActionListener((ActionListener) this);
 		Details_B = new JButton("Details");
 		Details_B.setToolTipText("The common words");
 		Details_B.setBackground(Color.gray);
@@ -163,15 +165,27 @@ public class TopicModelGUI extends JFrame implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource() == chFile_B1) {
 			chooseFile(1);
-			String path1 = this.file_1.getAbsolutePath(); // remove if not fixed
+			//String path1 = this.file_1.getAbsolutePath(); // remove if not fixed
 			System.out.print(this.file_1);
 		}
-		else if(e.getSource() == chFile_B2){
+		else if(e.getSource() == chFile_B2) {
 			chooseFile(2);
-			String path1 = this.file_1.getAbsolutePath(); // remove if not fixed
+			//String path2 = this.file_1.getAbsolutePath(); // remove if not fixed
 			System.out.print(getFile_2());
 		}
+		else if(e.getSource() == compare_B) {
+			String path1 = this.file_1.getAbsolutePath();
+			String path2 = this.file_2.getAbsolutePath();
+			FileProcessor file_Process1  = new FileProcessor(path1, path2);
+			System.out.print("hello");
+			try {
+				file_Process1.readFile();
+			} catch (IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}  // <-------------------------------------------problem
+		}
 		
-		FileProcessor files = new FileProcessor(String path1, String path2); // +++++++ fix this
+		
 	}
 }
