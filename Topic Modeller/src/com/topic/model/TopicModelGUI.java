@@ -23,7 +23,7 @@ public class TopicModelGUI extends JFrame implements ActionListener{
 	// attributes
 	JFileChooser ch_file1;
 	JLabel label1, label2, label3; 
-	JButton chFile_B1, chFile_B2, compare_B, Details_B;
+	JButton chFile_B1, chFile_B2, compare_B, details_B;
 	JPanel panel1, panel2;
 	private File file_1, file_2;
 	
@@ -70,9 +70,9 @@ public class TopicModelGUI extends JFrame implements ActionListener{
 		compare_B.setToolTipText("Find the Topic");
 		compare_B.setBackground(Color.gray);
 		compare_B.addActionListener((ActionListener) this);
-		Details_B = new JButton("Details");
-		Details_B.setToolTipText("The common words");
-		Details_B.setBackground(Color.gray);
+		details_B = new JButton("Details");
+		details_B.setToolTipText("The common words");
+		details_B.setBackground(Color.gray);
 		
 		// creates the panel that will hold the labels and buttons for choosing the file
 		panel1 = new JPanel();
@@ -110,9 +110,9 @@ public class TopicModelGUI extends JFrame implements ActionListener{
 		panel2.setBorder(BorderFactory.createTitledBorder("More Details"));
 		panel2.add(Box.createRigidArea(new Dimension(0,15)));
 		panel2.add(label3);
-		panel2.add(Details_B);
+		panel2.add(details_B);
 		panel2.add(Box.createRigidArea(new Dimension(0,10)));
-		Details_B.setAlignmentX(Component.CENTER_ALIGNMENT);
+		details_B.setAlignmentX(Component.CENTER_ALIGNMENT);
 		add(panel2);
 		
 		// makes all the components of the GUI visible
@@ -180,6 +180,9 @@ public class TopicModelGUI extends JFrame implements ActionListener{
 			} catch (IOException e1) {
 				e1.printStackTrace();
 			}
+		}
+		else if(e.getSource() == details_B) {
+			//model_calc.
 		}
 		
 		
