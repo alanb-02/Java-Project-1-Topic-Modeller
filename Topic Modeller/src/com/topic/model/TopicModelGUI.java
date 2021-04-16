@@ -29,6 +29,10 @@ public class TopicModelGUI extends JFrame implements ActionListener{
 	private File file_1, file_2;
 	private List<String> final_List;
 	
+	// constructors
+	public TopicModelGUI(List<String> final_List) {
+		this.final_List = final_List;
+	}
 	
 	// getting and setting the 2 documents
 	public File getFile_1() {
@@ -50,10 +54,6 @@ public class TopicModelGUI extends JFrame implements ActionListener{
 		this.final_List = final_List;
 	}
 	
-	// constructors
-	public TopicModelGUI(List<String> final_List) {
-		this.final_List = final_List;
-	}
 	
 	// constructors
 	TopicModelGUI(String title){
@@ -86,6 +86,7 @@ public class TopicModelGUI extends JFrame implements ActionListener{
 		details_B = new JButton("Details");
 		details_B.setToolTipText("The common words");
 		details_B.setBackground(Color.gray);
+		details_B.addActionListener((ActionListener) this);
 		
 		// creates the panel that will hold the labels and buttons for choosing the file
 		panel1 = new JPanel();
@@ -209,8 +210,22 @@ public class TopicModelGUI extends JFrame implements ActionListener{
 		// button for more details
 		else if(e.getSource() == details_B) {
 			// pop up to show the common words among the 2 files 
-			moreDetails();
+			if(this.final_List != null) {
+				moreDetails();
+			}
+			else {
+				JOptionPane.showMessageDialog(null, "!!!You have to first compare the 2 files!!!");
+			}
+			
 		}
+	}
+	
+	
+	public List<String> retrieveFinalList(List<String> f_List1) {
+		this.final_List = f_List1;
+		
+		return this.final_List;
+		
 	}
 	
 	// method to display the common words of the 2 lists in a option pane
@@ -226,5 +241,5 @@ public class TopicModelGUI extends JFrame implements ActionListener{
 		String str = strbuild.toString();
 		// pop up to show the contents of teh list
 		JOptionPane.showMessageDialog(this,"The common words are: \n" + str);
-	}
+	}	
 }

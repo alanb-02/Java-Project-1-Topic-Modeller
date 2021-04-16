@@ -118,7 +118,7 @@ public class FileProcessor {
 			System.out.println();
 			// comparing the common word of the 2 lists
 			wordList1 = model_calc.comparingLists(wordList1, wordList2);
-			System.out.println();
+			System.out.println(wordList1);
 			TopicModelGUI topicM = new TopicModelGUI(wordList1);
 			
 			// closing the scanner

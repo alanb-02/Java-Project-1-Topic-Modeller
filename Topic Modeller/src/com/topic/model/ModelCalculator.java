@@ -94,7 +94,7 @@ public class ModelCalculator {
 		
 		// getting the number of common words
 		int total = m_Lists1.size();
-		System.out.println(m_Lists1);
+		//System.out.println(m_Lists1);
 		System.out.println(total);
 		// method to calculate the percentage and takes in the number of common words
 		calculatePercent(total);
