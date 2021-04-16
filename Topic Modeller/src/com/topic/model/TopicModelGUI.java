@@ -7,6 +7,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
 
 import javax.swing.BorderFactory;
 import javax.swing.Box;
@@ -26,6 +27,8 @@ public class TopicModelGUI extends JFrame implements ActionListener{
 	JButton chFile_B1, chFile_B2, compare_B, details_B;
 	JPanel panel1, panel2;
 	private File file_1, file_2;
+	private List<String> final_List;
+	
 	
 	// getting and setting the 2 documents
 	public File getFile_1() {
@@ -40,8 +43,18 @@ public class TopicModelGUI extends JFrame implements ActionListener{
 	public void setFile_2(File file_2) {
 		this.file_2 = file_2;
 	}
-
-
+	public List<String> getFinal_List() {
+		return final_List;
+	}
+	public void setFinal_List(List<String> final_List) {
+		this.final_List = final_List;
+	}
+	
+	// constructors
+	public TopicModelGUI(List<String> final_List) {
+		this.final_List = final_List;
+	}
+	
 	// constructors
 	TopicModelGUI(String title){
 		
@@ -148,11 +161,13 @@ public class TopicModelGUI extends JFrame implements ActionListener{
 			JOptionPane.showMessageDialog(this, "Not a valid file selection !!!");
 			// assigning the files as null with relation to the button pressed and if no file is selected
 			if(button_num == 1) {
+				// change color of button to red if no file is chosen
 				chFile_B1.setBackground(Color.red);
 				this.file_1 = null;
 				return this.file_2;
 			}
 			else if(button_num == 2) {
+				// change color of button to red if no file is chosen
 				chFile_B2.setBackground(Color.red);
 				this.file_2 = null;
 				return this.file_2;
@@ -161,30 +176,55 @@ public class TopicModelGUI extends JFrame implements ActionListener{
 		 return this.file_1;
 	}
 	
-	// event handler - for selecting the 2 files
+	// event handler - for selecting the 2 files and more details
 	public void actionPerformed(ActionEvent e) {
+		// file chooser 1
 		if(e.getSource() == chFile_B1) {
+			// choosing the first file
 			chooseFile(1);
+			// print the file path
 			System.out.print(this.file_1);
 		}
+		// file chooser 2
 		else if(e.getSource() == chFile_B2) {
+			// choosing the second file
 			chooseFile(2);
+			// printing the file path
 			System.out.print(getFile_2());
 		}
+		// button to compare files
 		else if(e.getSource() == compare_B) {
+			// getting the file paths for the 2 files
 			String path1 = this.file_1.getAbsolutePath();
 			String path2 = this.file_2.getAbsolutePath();
+			// file processor object to take the 2 file paths
 			FileProcessor file_Process1  = new FileProcessor(path1, path2);
 			try {
+				// reading the file
 				file_Process1.readFile();
 			} catch (IOException e1) {
 				e1.printStackTrace();
 			}
-		}
+		}               
+		// button for more details
 		else if(e.getSource() == details_B) {
-			//model_calc.
+			// pop up to show the common words among the 2 files 
+			moreDetails();
 		}
-		
-		
+	}
+	
+	// method to display the common words of the 2 lists in a option pane
+	public void moreDetails() {
+		// string builder to convert the contents of the list into a string
+		StringBuilder strbuild = new StringBuilder();
+		// for loop adds the seperate words in the list into a string
+		for(String wrds : this.final_List) {
+			strbuild.append(wrds);
+			strbuild.append("\n");
+		}
+		// creating the string to asign the string builder
+		String str = strbuild.toString();
+		// pop up to show the contents of teh list
+		JOptionPane.showMessageDialog(this,"The common words are: \n" + str);
 	}
 }

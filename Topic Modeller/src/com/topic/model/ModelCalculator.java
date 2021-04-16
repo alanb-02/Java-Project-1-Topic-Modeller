@@ -39,7 +39,7 @@ public class ModelCalculator {
 	public void setF2_List(List<String> f2_List) {
 		this.f2_List = f2_List;
 	}
-
+	
 	public double getSimilarity_Percent() {
 		return similarity_Percent;
 	}
@@ -79,7 +79,7 @@ public class ModelCalculator {
 	}
 	
 	// method to compare the two list and finding the common words between the two lists
-	public void comparingLists(List<String> m_Lists1, List<String> m_Lists2) {
+	public List<String> comparingLists(List<String> m_Lists1, List<String> m_Lists2) {
 		System.out.println("--------------------------------------------------------------------------------------------------------------------\n");
 		
 		// assign the common strings in between the two lists in the first list
@@ -98,7 +98,10 @@ public class ModelCalculator {
 		System.out.println(total);
 		// method to calculate the percentage and takes in the number of common words
 		calculatePercent(total);
+		
+		return m_Lists1;
 	}
+	
 	
 	// method to calculate the percentage of similarity
 	public void calculatePercent(int total) {

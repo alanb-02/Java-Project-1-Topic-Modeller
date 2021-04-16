@@ -110,12 +110,16 @@ public class FileProcessor {
 			removeStopWords(wordList2);
 			ModelCalculator model_calc = new ModelCalculator(wordList1, wordList2);
 			System.out.println();
+			// changing the list to common words 
 			wordList1 = model_calc.commonInList(wordList1);
 			System.out.println();
+			// changing the list to common words 
 			wordList2 = model_calc.commonInList(wordList2);
 			System.out.println();
-			model_calc.comparingLists(wordList1, wordList2);
+			// comparing the common word of the 2 lists
+			wordList1 = model_calc.comparingLists(wordList1, wordList2);
 			System.out.println();
+			TopicModelGUI topicM = new TopicModelGUI(wordList1);
 			
 			// closing the scanner
 			filescan1.close();
