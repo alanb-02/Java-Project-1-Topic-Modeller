@@ -8,6 +8,8 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Scanner;
 
+import javax.swing.JOptionPane;
+
 public class FileProcessor {
 	
 	// attributes
@@ -15,12 +17,7 @@ public class FileProcessor {
 	// the files 
 	private String filename1, filename2;
 	private File edited_File1, edited_File2;
-	
-	// constructor takes in the pathname of the files to compare
-	public FileProcessor(String filename1, String filename2) {
-		this.filename1 = filename1;
-		this.filename2 = filename2;
-	}
+	private String final_List;
 
 	// getter and setter for private attributes
 	public String getFilename1() {
@@ -62,6 +59,11 @@ public class FileProcessor {
 		edited_File2 = new File(filename2);
 	}
 	
+	// method takes in the file paths and sets the attributes
+	public void setFiles(String filename1, String filename2) {
+		this.filename1 = filename1;
+		this.filename2 = filename2;
+	}
 	
 	// method reads the contents of the file and add each word to the list
 	public List<String> readFile() throws IOException {
@@ -109,17 +111,12 @@ public class FileProcessor {
 			removeStopWords(wordList1);
 			removeStopWords(wordList2);
 			ModelCalculator model_calc = new ModelCalculator(wordList1, wordList2);
-			System.out.println();
 			// changing the list to common words 
 			wordList1 = model_calc.commonInList(wordList1);
-			System.out.println();
 			// changing the list to common words 
 			wordList2 = model_calc.commonInList(wordList2);
-			System.out.println();
 			// comparing the common word of the 2 lists
-			wordList1 = model_calc.comparingLists(wordList1, wordList2);
-			System.out.println(wordList1);
-			TopicModelGUI topicM = new TopicModelGUI(wordList1);
+			this.final_List = model_calc.comparingLists(wordList1, wordList2);
 			
 			// closing the scanner
 			filescan1.close();
@@ -158,5 +155,10 @@ public class FileProcessor {
 				itr.remove(); 
 			}
 		}
+	}
+	
+	// method to open panel to display the common words 
+	public void printFinalString() {
+		JOptionPane.showMessageDialog(null, "The matching words are: \n" + this.final_List);
 	}
 }

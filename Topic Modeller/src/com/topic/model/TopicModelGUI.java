@@ -7,6 +7,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.BorderFactory;
@@ -28,6 +29,8 @@ public class TopicModelGUI extends JFrame implements ActionListener{
 	JPanel panel1, panel2;
 	private File file_1, file_2;
 	private List<String> final_List;
+	
+	FileProcessor file_Process1 = new FileProcessor();
 	
 	// constructors
 	public TopicModelGUI(List<String> final_List) {
@@ -147,11 +150,13 @@ public class TopicModelGUI extends JFrame implements ActionListener{
 		    File selectedFiles = fileChooser.getSelectedFile();
 		    // assigning the files depending on the button selected
 		    if(button_num == 1) {
+		    	// assigning selected file
 		    	this.file_1 = selectedFiles;
 		    	chFile_B1.setBackground(Color.green);
 		    	return this.file_1;
 		    }
 		    else if(button_num == 2) {
+		    	// assigning selected file
 		    	this.file_2 = selectedFiles;
 		    	chFile_B2.setBackground(Color.green);
 		    	return this.file_2;
@@ -164,12 +169,14 @@ public class TopicModelGUI extends JFrame implements ActionListener{
 			if(button_num == 1) {
 				// change color of button to red if no file is chosen
 				chFile_B1.setBackground(Color.red);
+				// making file choosers null if no file is selected
 				this.file_1 = null;
 				return this.file_2;
 			}
 			else if(button_num == 2) {
 				// change color of button to red if no file is chosen
 				chFile_B2.setBackground(Color.red);
+				// making file choosers null if no file is selected
 				this.file_2 = null;
 				return this.file_2;
 			}
@@ -184,22 +191,29 @@ public class TopicModelGUI extends JFrame implements ActionListener{
 			// choosing the first file
 			chooseFile(1);
 			// print the file path
-			System.out.print(this.file_1);
+			System.out.print(this.file_1 + "\n");
 		}
 		// file chooser 2
 		else if(e.getSource() == chFile_B2) {
 			// choosing the second file
 			chooseFile(2);
 			// printing the file path
-			System.out.print(getFile_2());
+			System.out.print(getFile_2() + "\n");
 		}
 		// button to compare files
 		else if(e.getSource() == compare_B) {
-			// getting the file paths for the 2 files
+			// catching null file selections
+			try {
+				// getting the file paths for the 2 files
 			String path1 = this.file_1.getAbsolutePath();
 			String path2 = this.file_2.getAbsolutePath();
 			// file processor object to take the 2 file paths
-			FileProcessor file_Process1  = new FileProcessor(path1, path2);
+			file_Process1.setFiles(path1, path2);
+			}
+			catch(NullPointerException e2) {
+				JOptionPane.showMessageDialog(null,"File(s) missing !!!");
+			}
+			
 			try {
 				// reading the file
 				file_Process1.readFile();
@@ -209,37 +223,15 @@ public class TopicModelGUI extends JFrame implements ActionListener{
 		}               
 		// button for more details
 		else if(e.getSource() == details_B) {
-			// pop up to show the common words among the 2 files 
-			if(this.final_List != null) {
-				moreDetails();
+			// pop up to show the common words among the 2 files
+			try {
+				file_Process1.printFinalString();		
 			}
-			else {
-				JOptionPane.showMessageDialog(null, "!!!You have to first compare the 2 files!!!");
+			catch(NullPointerException e3) {
+				JOptionPane.showMessageDialog(null, "File(s) missing !!!");
 			}
 			
 		}
 	}
 	
-	
-	public List<String> retrieveFinalList(List<String> f_List1) {
-		this.final_List = f_List1;
-		
-		return this.final_List;
-		
-	}
-	
-	// method to display the common words of the 2 lists in a option pane
-	public void moreDetails() {
-		// string builder to convert the contents of the list into a string
-		StringBuilder strbuild = new StringBuilder();
-		// for loop adds the seperate words in the list into a string
-		for(String wrds : this.final_List) {
-			strbuild.append(wrds);
-			strbuild.append("\n");
-		}
-		// creating the string to asign the string builder
-		String str = strbuild.toString();
-		// pop up to show the contents of teh list
-		JOptionPane.showMessageDialog(this,"The common words are: \n" + str);
-	}	
 }

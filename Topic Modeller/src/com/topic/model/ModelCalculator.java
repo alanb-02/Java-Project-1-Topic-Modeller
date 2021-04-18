@@ -48,7 +48,7 @@ public class ModelCalculator {
 		this.similarity_Percent = similarity_Percent;
 	}
 	
-	// method to calculate the top 20 most occurring words in the lists
+	// method to calculate the top 10 most occurring words in the lists
 	public List<String> commonInList(List<String> lists) {
 		// hashmap to hold the word as the key and the number of occurrences as the value
 		Map<String, Integer> list_TMap = new HashMap<String, Integer>();
@@ -66,22 +66,19 @@ public class ModelCalculator {
 
 		// list will hold the sorted map
 		List<String> key_List = new ArrayList<String>(sorted_Map.keySet());
-		// list will hold the top 20 most occurring words in the above list
+		// list will hold the top 10 most occurring words in the above list
 		List<String> common_Word_List = new ArrayList<String>();
 		
-		// for loop to assign the top 20 words into the new list
-		for(int i = 0; i < 20; i++) {
+		// for loop to assign the top 10 words into the new list
+		for(int i = 0; i < 10; i++) {
 			common_Word_List.add(key_List.get(i)); 
 		}
-		System.out.println(common_Word_List);
 		return common_Word_List;
 		
 	}
 	
 	// method to compare the two list and finding the common words between the two lists
-	public List<String> comparingLists(List<String> m_Lists1, List<String> m_Lists2) {
-		System.out.println("--------------------------------------------------------------------------------------------------------------------\n");
-		
+	public String comparingLists(List<String> m_Lists1, List<String> m_Lists2) {
 		// assign the common strings in between the two lists in the first list
 		m_Lists1.retainAll(m_Lists2);
 		// filtering the empty values in the list
@@ -89,26 +86,29 @@ public class ModelCalculator {
 		// negating the values using predicate
 		Predicate<String> empty = String::isEmpty;
 		Predicate<String> emptyWrds = empty.negate();
-		// assigning the removal to the list 
+		// assigning the removal to the list - stream
 		m_Lists1 = stream.filter(emptyWrds).collect(Collectors.toList());
 		
 		// getting the number of common words
 		int total = m_Lists1.size();
-		//System.out.println(m_Lists1);
-		System.out.println(total);
-		// method to calculate the percentage and takes in the number of common words
-		calculatePercent(total);
 		
-		return m_Lists1;
+		// printing the number of matches
+		System.out.println("\n The total number of matches = " + total);
+		
+		String final_Str = moreDetails(m_Lists1);
+		// method to calculate the percentage and takes in the number of common words
+		calculatePercent(total, final_Str);
+		
+		return final_Str;
 	}
 	
 	
 	// method to calculate the percentage of similarity
-	public void calculatePercent(int total) {
+	public void calculatePercent(int total, String print_List) {
 		// convert into a double
 		double total1 = total;
 		// calculation
-		this.similarity_Percent = (total1 / 20) * 100.0;
+		this.similarity_Percent = (total1 / 10) * 100.0;
 		
 		//if percent == 40% or more the the files are similar
 		if(this.similarity_Percent >= 40.0) {
@@ -120,4 +120,18 @@ public class ModelCalculator {
 		}
 	}
 	
+		// method to display the common words of the 2 lists in a option pane
+		public String moreDetails(List<String> f_List) {
+			// string builder to convert the contents of the list into a string
+			StringBuilder strbuild = new StringBuilder();
+			// for loop adds the seperate words in the list into a string
+			for(String wrds : f_List) {
+				strbuild.append("- " + wrds);
+				strbuild.append("\n");
+			}
+			// creating the string to asign the string builder
+			String str = strbuild.toString();
+			
+			return str;
+		}	
 }
