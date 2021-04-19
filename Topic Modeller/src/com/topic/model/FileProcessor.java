@@ -164,6 +164,12 @@ public class FileProcessor {
 	
 	// method to open panel to display the common words 
 	public void printFinalString() {
-		JOptionPane.showMessageDialog(null, "The matching words are: \n" + this.final_List);
+		if(this.final_List == null) {
+			JOptionPane.showMessageDialog(null, "File selection is incomplete !!!");
+		}
+		else {
+			JOptionPane.showMessageDialog(null, "The matching words are: \n" + this.final_List);
+		}
+		
 	}
 }

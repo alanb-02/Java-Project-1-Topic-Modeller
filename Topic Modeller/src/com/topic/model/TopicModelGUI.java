@@ -68,13 +68,13 @@ public class TopicModelGUI extends JFrame implements ActionListener{
 	TopicModelGUI(String title){
 		
 		super(title);
-		setSize(350,350);
+		setSize(350,380);
 		setLayout(new BoxLayout(getContentPane(), BoxLayout.Y_AXIS));
 		
 		// creating the 3 labels in the GUI
-		label1 = new JLabel("Select document / file 1:");
+		label1 = new JLabel("Select document / file 1: \n");
 		label1.setToolTipText("Document 1");
-		label2 = new JLabel("Select document / file 2:");
+		label2 = new JLabel("Select document / file 2: \n");
 		label2.setToolTipText("Document 2");
 		label3 = new JLabel(" Find out more details: ");
 		
@@ -226,7 +226,7 @@ public class TopicModelGUI extends JFrame implements ActionListener{
 			try {
 				// reading the file
 				file_Process1.readFile();
-			} catch (IOException e1) {
+			} catch (NullPointerException | IOException e1) {
 				e1.printStackTrace();
 			}
 		}               
