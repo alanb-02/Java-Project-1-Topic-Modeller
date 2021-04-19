@@ -164,6 +164,7 @@ public class FileProcessor {
 	
 	// method to open panel to display the common words 
 	public void printFinalString() {
+		// checks to see if files have been selected
 		if(this.final_List == null) {
 			JOptionPane.showMessageDialog(null, "File selection is incomplete !!!");
 		}
