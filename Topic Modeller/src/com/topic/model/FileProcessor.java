@@ -74,7 +74,6 @@ public class FileProcessor {
 		List<String> wordList2 = new ArrayList<String>();
 		
 		try {
-			// System.out.println(edited_File1.toString());
 			// using the scanner methods for the files
 			Scanner filescan1 = new Scanner(edited_File1);
 			Scanner filescan2 = new Scanner(edited_File2);

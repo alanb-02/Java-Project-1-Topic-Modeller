@@ -62,7 +62,7 @@ public class TopicModelGUI extends JFrame implements ActionListener{
 	TopicModelGUI(String title){
 		
 		super(title);
-		setSize(450,500);
+		setSize(350,350);
 		setLayout(new BoxLayout(getContentPane(), BoxLayout.Y_AXIS));
 		
 		// creating the 3 labels in the GUI
@@ -93,9 +93,12 @@ public class TopicModelGUI extends JFrame implements ActionListener{
 		
 		// creates the panel that will hold the labels and buttons for choosing the file
 		panel1 = new JPanel();
-		panel1.setSize(434,250); // size of panel
-		panel1.setLayout(new BoxLayout(panel1, BoxLayout.PAGE_AXIS)); // layout is set for the panel
-		panel1.setAlignmentX(Component.CENTER_ALIGNMENT); // aligning the panel center to the center of frame
+		// size of panel
+		panel1.setSize(434,250); 
+		// layout is set for the panel
+		panel1.setLayout(new BoxLayout(panel1, BoxLayout.PAGE_AXIS)); 
+		// aligning the panel center to the center of frame
+		panel1.setAlignmentX(Component.CENTER_ALIGNMENT); 
 		panel1.setBackground(Color.lightGray);
 		panel1.setBorder(BorderFactory.createTitledBorder("File Selection"));
 		panel1.add(Box.createRigidArea(new Dimension(0,20)));
@@ -181,7 +184,7 @@ public class TopicModelGUI extends JFrame implements ActionListener{
 				return this.file_2;
 			}
 		}
-		 return this.file_1;
+		return this.file_1;
 	}
 	
 	// event handler - for selecting the 2 files and more details

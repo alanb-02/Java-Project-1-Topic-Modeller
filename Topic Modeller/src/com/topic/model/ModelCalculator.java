@@ -63,15 +63,17 @@ public class ModelCalculator {
 		
 		// hashmap will be sorted in descending order of occurrences
 		Map<String, Integer> sorted_Map = list_TMap.entrySet().stream().sorted(Comparator.comparingInt(e -> -e.getValue())).collect(Collectors.toMap(Map.Entry::getKey,Map.Entry::getValue,(a, b) -> { throw new AssertionError(); },LinkedHashMap::new));
-
+		
 		// list will hold the sorted map
 		List<String> key_List = new ArrayList<String>(sorted_Map.keySet());
 		// list will hold the top 10 most occurring words in the above list
 		List<String> common_Word_List = new ArrayList<String>();
 		
-		// for loop to assign the top 10 words into the new list
-		for(int i = 0; i < 10; i++) {
-			common_Word_List.add(key_List.get(i)); 
+		if (key_List.size() > 10) {
+			// for loop to assign the top 10 words into the new list
+			for(int i = 0; i < 11; i++) {
+				common_Word_List.add(key_List.get(i)); 
+			}
 		}
 		return common_Word_List;
 		
