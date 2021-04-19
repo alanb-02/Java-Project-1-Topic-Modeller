@@ -22,6 +22,12 @@ import javax.swing.JPanel;
 
 public class TopicModelGUI extends JFrame implements ActionListener{
 	
+	/******************
+	 * Class: class creates the window for the app and deals with event handling - file chooser
+	 * Author: Alan Byju
+	 * Date 07/04/2021
+	 ******************/
+	
 	// attributes
 	JFileChooser ch_file1;
 	JLabel label1, label2, label3; 

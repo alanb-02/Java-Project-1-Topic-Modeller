@@ -14,6 +14,12 @@ import javax.swing.JOptionPane;
 
 public class ModelCalculator {
 	
+	/******************
+	 * Class: class counts the occurrences of words in each list, then compares the top 10 words in the 2 list and gives a percentage of similarity
+	 * Author: Alan Byju
+	 * Date 07/04/2021
+	 ******************/
+	
 	// attributes
 	private List<String> f1_List, f2_List;
 	private double similarity_Percent;

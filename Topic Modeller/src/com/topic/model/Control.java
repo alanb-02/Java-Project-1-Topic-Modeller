@@ -3,7 +3,7 @@ package com.topic.model;
 public class Control {
 
 	/******************
-	 * Class: main class
+	 * Class: main class instantiates the GUI
 	 * Author: Alan Byju
 	 * Date 07/04/2021
 	 ******************/

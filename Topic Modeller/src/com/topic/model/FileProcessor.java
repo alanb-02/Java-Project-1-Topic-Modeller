@@ -12,6 +12,12 @@ import javax.swing.JOptionPane;
 
 public class FileProcessor {
 	
+	/******************
+	 * Class: class deals with reading through the files and putting them into lists
+	 * Author: Alan Byju
+	 * Date 07/04/2021
+	 ******************/
+	
 	// attributes
 	// 2 paths of the file to compare
 	// the files 
